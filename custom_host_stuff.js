@@ -125,55 +125,55 @@ function registerAppCacheEventHandlers() {
 
     if (document.documentElement.hasAttribute("manifest")) {
         if (!navigator.onLine) {
-            createOrUpdateAppCacheToast('★ Off-line wait...', 2000);
+            createOrUpdateAppCacheToast('★ انتظار غير متصل...', 2000);
         } else {
             // this is redundant
-            createOrUpdateAppCacheToast("★ Check updates...");
+            createOrUpdateAppCacheToast("★ التحقق من التحديثات...");
         }
     }
 
     appCache.addEventListener('cached', function (e) {
-        createOrUpdateAppCacheToast('★ Finished caching site', 1500);
+        createOrUpdateAppCacheToast('★ تم تحميل صفحة التهكير بنجاح', 1500);
     }, false);
 
     appCache.addEventListener('checking', function (e) {
-        createOrUpdateAppCacheToast('★ Check updates...');
+        createOrUpdateAppCacheToast('★ التحقق من التحديثات...');
     }, false);
 
     appCache.addEventListener('downloading', function (e) {
-        createOrUpdateAppCacheToast('★ Downloading cache');
+        createOrUpdateAppCacheToast('★ جاري تحميل صفحة التهكير');
     }, false);
 
     appCache.addEventListener('error', function (e) {
         // only show error toast if we're online
         if (navigator.onLine) {
-            createOrUpdateAppCacheToast('★ Error caching', 5000);
+            createOrUpdateAppCacheToast('★ خطأ في تحميل صفحة التهكير', 5000);
         } else {
-            createOrUpdateAppCacheToast('★ Off-line wait...', 2000);
+            createOrUpdateAppCacheToast('★ انتظار غير متصل...', 2000);
         }
     }, false);
 
     appCache.addEventListener('noupdate', function (e) {
-        createOrUpdateAppCacheToast('★ Cache is up', 1500);
+        createOrUpdateAppCacheToast('★ جاري تحميل صفحة التهكير', 1500);
     }, false);
 
     appCache.addEventListener('obsolete', function (e) {
-        createOrUpdateAppCacheToast('★ Site is obsolete');
+        createOrUpdateAppCacheToast('★ الموقع قديم');
     }, false);
 
        appCache.addEventListener('progress', function (e) {
     let dots = '.'.repeat(Math.min(Math.floor((e.loaded / e.total) * 3), 3)); // Máximo 3 puntos suspensivos
 
-    createOrUpdateAppCacheToast('★ Downloading cache' + dots);
+    createOrUpdateAppCacheToast('★ جاري تحميل صفحة التهكير' + dots);
 
     if (e.loaded + 1 == e.total) {
-        createOrUpdateAppCacheToast("★ Done wait ...");
+        createOrUpdateAppCacheToast("★ إنتهى الإنتظار...");
     }
 }, false);
 
     appCache.addEventListener('updateready', function (e) {
         if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-            createOrUpdateAppCacheToast('★ Site updated. Refresh');
+            createOrUpdateAppCacheToast('★ تم تحديث الموقع. تحديث');
         }
     }, false);
 }
@@ -273,7 +273,7 @@ for (const payload of payloads) {
     debugMessage.style.cursor = "default"; // Elimina el cursor de tipo "mano" para no dar la impresión de que es clickeable
 
     // El contenido del mensaje que queremos mostrar
-    debugMessage.innerHTML = "★ Debug Settings Ready ✓<br>Waiting payload";
+    debugMessage.innerHTML = "★ تم التهكير بنجاح ✓<br>أخرج من صفحة التهكير و أستمتع باللعب";
 
     payloadsView.appendChild(debugMessage); // Agregar el mensaje al contenedor
 }
