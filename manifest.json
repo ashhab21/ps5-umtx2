@@ -1,0 +1,14 @@
+{
+  "applicationData": {
+    "branchType": "release"
+  },
+  "applicationName": "No Title",
+  "applicationVersion": "1.0.0+000",
+  "bootAnimation": "default",
+  "commitHash": "",
+  "enableHttpCache": true,
+  "repositoryUrl": "",
+  "reactNativePlaystationVersion": "1.0.0-000.0",
+  "titleId": "ASHH21211",
+  "twinTurbo": false
+}
