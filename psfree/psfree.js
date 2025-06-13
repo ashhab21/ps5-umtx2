@@ -908,7 +908,7 @@ window.run_psfree = async function(target) {
         }
     };
 
-    debug_log('PSFree: done');
+    debug_log('PSFree: تم');
 
     window.p = prim;
 }
