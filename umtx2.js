@@ -766,10 +766,10 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
 
 
     const ogCore = await getCurrentCore();
-    if (debug) await log(`Main thread original core: ${ogCore}`, LogLevel.DEBUG);
+    if (debug) await log(`الخيط الرئيسي النواة الأصلية: ${ogCore}`, LogLevel.DEBUG);
 
     const ogPrio = await getRtprio();
-    if (debug) await log(`Main thread original prio: ${ogPrio}`, LogLevel.DEBUG);
+    if (debug) await log(`الموضوع الرئيسي الأصلي preio: ${ogPrio}`, LogLevel.DEBUG);
 
     await pinToCore(thread_config.main_thread.core);
     await setRtprio(thread_config.main_thread.prio);
@@ -781,7 +781,7 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
 
     let checkMemoryAccessFailCount = 0;
 
-    await log("▶︎ Triggering race\n[UMTX] Please wait ...", LogLevel.LOG);
+    await log("▶︎ سباق التحفيز\n[UMTX] الرجاء الإنتظار...", LogLevel.LOG);
 
     for (let i = 1; i <= config.max_attempts; i++) {
         // await log(`Attempt ${i}`, LogLevel.LOG);
@@ -802,10 +802,10 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
         await lookupThread.spawn_thread();
         await destroyerThread0.spawn_thread();
         await destroyerThread1.spawn_thread();
-        if (debug) await log("Spawned threads, waiting for them to be ready...", LogLevel.DEBUG);
+        if (debug) await log("المواضيع المفرخة، في انتظار أن تكون جاهزة...", LogLevel.DEBUG);
 
         await waitForRaceThreadsState(threadStatus.READY);
-        if (debug) await log("All threads ready", LogLevel.DEBUG);
+        if (debug) await log("جميع المواضيع جاهزة", LogLevel.DEBUG);
 
         let count = 0;
 
@@ -817,9 +817,9 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
         for (let i2 = 0; i2 < config.max_race_attempts; i2++) {
             if (i2 % 10 == 0) {
                 if (debug) {
-                    await log(`    Activating Xploit ...\n▶︎ Triggering Race attempt ${i}-${i2} (mem access fail: ${checkMemoryAccessFailCount})`, LogLevel.INFO | LogLevel.FLAG_TEMP);
+                    await log(`    جاري تفعيل التهكير...\n▶︎ محاولة إثارة السباق ${i}-${i2} (فشل الوصول إلى الذاكرة: ${checkMemoryAccessFailCount})`, LogLevel.INFO | LogLevel.FLAG_TEMP);
                 } else {
-                    await log(`    Activating Xploit ...\n▶︎ Triggering Race attempt ${i}-${i2}`, LogLevel.INFO | LogLevel.FLAG_TEMP);
+                    await log(`    جاري تفعيل التهكير...\n▶︎ محاولة إثارة السباق ${i}-${i2}`, LogLevel.INFO | LogLevel.FLAG_TEMP);
                 }
             }
 
@@ -889,9 +889,9 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
         }
 
         if (count != config.max_race_attempts) {
-            if (debug) await log(`Race won after ${count} attempts`, LogLevel.INFO);
+            if (debug) await log(`السباق فاز بعد ${count} محاولات`, LogLevel.INFO);
         } else {
-            if (debug) await log("Race max attempts reached, retrying...", LogLevel.INFO);
+            if (debug) await log("تم الوصول إلى الحد الأقصى لمحاولات السباق، جاري المحاولة مرة أخرى...", LogLevel.INFO);
         }
 
         const afterRaceTime = performance.now();
@@ -901,7 +901,7 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
         p.write8(commonThreadData.exit, 1);
         p.write8(commonThreadData.resume, 1);
 
-        if (debug) await log("Waiting for all threads to exit...", LogLevel.DEBUG);
+        if (debug) await log("في انتظار خروج كافة المواضيع...", LogLevel.DEBUG);
 
         await waitForRaceThreadsState(threadStatus.EXITED);
 
@@ -1003,7 +1003,7 @@ async function runUmtx2Exploit(p, chain, log = async () => { }) {
         p.write8(kprimCommonData.thr_index, kprimId);
         p.write8(kprimCommonData.exit, 1);
 
-        await log(`★ Jailbreak Done! (kprim_id = ${kprimId})`, LogLevel.SUCCESS);
+        await log(`★ تم تفعيل الجلبريك... أنتظر حتى ينتهي التهكير لا تستعجل! (kprim_id = ${kprimId})`, LogLevel.SUCCESS);
         if (debug) await log("Waiting for all kprim threads to exit (except the winner thread)...", LogLevel.DEBUG);
 
         await waitForKprimThreadsState(threadStatus.EXITED, config.num_kprim_threads - 1);
